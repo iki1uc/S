@@ -2,42 +2,92 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>RE · 6E/6D · RAW-System</title>
+<title>S · SAVE · ARCHIV · ROOM</title>
 
 <style>
-body { background:#000; color:#0f0; font-family:Consolas; padding:20px; }
-h1, h2 { color:#6cf; }
-pre { background:#111; border:1px solid #333; padding:12px; }
-a { color:#6cf; display:block; margin:6px 0; }
+  body { background:#000; color:#00ffff; font-family:Consolas; padding:20px; }
+  h1 { color:#33ccff; text-shadow:0 0 10px #00ffff; }
+  .panel { background:#111; border:1px solid #333; padding:15px; margin:20px 0; border-radius:8px; }
+  pre { background:#000; border:1px solid #333; padding:12px; border-radius:6px; white-space:pre-wrap; }
 </style>
+
+<script>
+async function load(path){
+  try{
+    const r = await fetch("./" + path);
+    if(!r.ok) return null;
+    return await r.text();
+  }catch(e){
+    return null;
+  }
+}
+
+function vector(content){
+  return {
+    LEN: content.length,
+    LINES: content.split("\n").length,
+    STATE: content.includes("ERR") ? "kritisch" : "neutral"
+  };
+}
+
+function status(content){
+  if(!content) return "FEHLT";
+  if(content.includes("ERR")) return "ORANGE";
+  return "GRÜN";
+}
+
+async function start(){
+
+  const FILES = [
+    "S.room",
+    "SAVE.rom",
+    "SAVE.scan",
+    "SAVE.pipe",
+    "SAVE.state",
+
+    "X.room",
+    "X.room.CORE",
+    "X.room.IN",
+    "X.room.OUT",
+
+    "Y.room",
+    "H.room",
+
+    "9×9-Operator.me",
+    "698869.html",
+
+    "README.md",
+    "id.html"
+  ];
+
+  const out = document.getElementById("out");
+
+  for(const f of FILES){
+    const content = await load(f);
+    const vec = vector(content || "");
+
+    const div = document.createElement("div");
+    div.className = "panel";
+    div.innerHTML = `
+      <h2>${f} — ${status(content)}</h2>
+      <pre>${content ? content.substring(0,300) : "FEHLT"}</pre>
+      <pre>
+Länge: ${vec.LEN}
+Zeilen: ${vec.LINES}
+Status: ${vec.STATE}
+      </pre>
+    `;
+    out.appendChild(div);
+  }
+}
+</script>
 </head>
 
-<body>
+<body onload="start()">
 
-<h1>6E · 6D · RAW · NC</h1>
+<h1>S · SAVE · ARCHIV · ROOM</h1>
 
-<pre>
-SYSTEM: 6E / 6D
-RAW: NC-RAW
-MATRIX: 9×9
-OPERATOR: BEAT∞ → REV1.0 → WIN∞
-AXES: ↑_0O / →_O0 / ↧_R0 / ∞_0M
-</pre>
-
-<section>
-<h2>Achsen</h2>
-<a href="./↑_0O/X.room">↑_0O · Höhe</a>
-<a href="./→_O0/X.room">→_O0 · Breite</a>
-<a href="./↧_R0/X.room">↧_R0 · Tiefe</a>
-<a href="./∞_0M/X.room">∞_0M · Mystery</a>
-</section>
-
-<section>
-<h2>META²³</h2>
-<a href="./∞_0M/META².room">META²</a>
-<a href="./∞_0M/META³.room">META³</a>
-<a href="./∞_0M/META360.room">META360</a>
-</section>
+<div id="out"></div>
 
 </body>
 </html>
