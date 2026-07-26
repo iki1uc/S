@@ -9,6 +9,47 @@
   h1 { color:#33ccff; text-shadow:0 0 10px #00ffff; }
   .panel { background:#111; border:1px solid #333; padding:15px; margin:20px 0; border-radius:8px; }
   pre { background:#000; border:1px solid #333; padding:12px; border-radius:6px; white-space:pre-wrap; }
+
+  /* VISUAL PANEL */
+  #visualBox {
+    width:300px;
+    height:300px;
+    border:2px solid #00ffff;
+    border-radius:10px;
+    margin:40px auto;
+    position:relative;
+  }
+
+  /* S‑MOVE Punkt */
+  #sPoint {
+    width:20px;
+    height:20px;
+    background:#00ffff;
+    border-radius:50%;
+    position:absolute;
+    left:140px;
+    top:140px;
+    animation:moveS 6s infinite linear;
+  }
+
+  /* MOVE‑Animation */
+  @keyframes moveS {
+
+    /* X‑LEFT */
+    0%   { left:40px;  top:140px; }
+
+    /* X‑RIGHT */
+    25%  { left:240px; top:140px; }
+
+    /* Y‑UP */
+    50%  { left:140px; top:40px; }
+
+    /* Y‑DOWN */
+    75%  { left:140px; top:240px; }
+
+    /* S‑Archivshift (Mitte) */
+    100% { left:140px; top:140px; }
+  }
 </style>
 
 <script>
@@ -86,6 +127,11 @@ Status: ${vec.STATE}
 <body onload="start()">
 
 <h1>S · SAVE · ARCHIV · ROOM</h1>
+
+<!-- VISUAL PANEL -->
+<div id="visualBox">
+  <div id="sPoint"></div>
+</div>
 
 <div id="out"></div>
 
