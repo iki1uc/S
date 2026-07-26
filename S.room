@@ -1,0 +1,18 @@
+CORE = S
+VERSION = 1.0
+CODE = RAW
+AXIS = S-Axis (X ↔ Y)
+FORM = SAVE / ARCHIV / ROOM
+GEOMETRIE = Systemraum → Archivraum
+FREQUENZ = 333 Hz
+EBENE = 9D
+STATUS = Aktiv
+
+S = Systembewegung
+S = Archivverschiebung
+S = Raumwechsel
+
+MOVE:
+  PHASE1 = X.LEFT → X.RIGHT
+  PHASE2 = Y.UP → Y.DOWN
+  MODE = LOOP
