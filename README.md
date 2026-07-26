@@ -1,3 +1,21 @@
+S = SAVE / SYSTEM / ARCHIV
+CORE = S
+VERSION = 1.1
+CODE = RAW
+AXIS = S-Axis (X ↔ Y)
+FORM = Systemraum / Archivraum
+GEOMETRIE = X/Y-Raumstruktur
+FREQUENZ = 333 Hz
+EBENE = 9D
+STATUS = Aktiv
+
+IDENTITY:
+  S = Systemkern
+  S = Archivkern
+  S = Raumkern
+  S = Verbindung zwischen X und Y
+
+
 # S · SAVE · ARCHIV · ROOM
 
 Der Ordner **S/** ist der zentrale Speicher‑Raum des iki1uc‑Systems.
