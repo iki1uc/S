@@ -1,11 +1,9 @@
+X-AXIS:
+  INPUT = X.room.IN
+  OUTPUT = X.room.OUT
+  CORE = X.room.CORE
 
-AXIS: H° (inherit)
-SYMBOL: ↑
-RESPO: 0O
-TYPE: Universal
-REAL: X
-VIRTUAL: X°
-MATRIX: 9×9
-OPERATOR: 9×9-Operator.me
-META: META²³
-PREFETCH: ACTIVE
+SYNC:
+  FREQ = 333 Hz
+  EBENE = 9D
+  MODE = BIDIRECTIONAL
